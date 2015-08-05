@@ -2,10 +2,17 @@
 class DB{
 	const DB_NAME = 'dvd.db';
 	protected $_db;
-	function __construct(){
+    protected static $_instance = null;
+	protected function __construct(){
 		$this->_db = new SQLite3(self::DB_NAME);
 	}
-	function __destruct(){
+    protected function __clone(){}
+	public static function getInstance(){
+      if(!self::$_instance instanceof self)//не является экземпляром самого себя
+        self::$_instance = new self;
+      return self::$_instance;
+    }
+    function __destruct(){
 		unset($this->_db);
 	}
 	/* Перегоняем объект в массив для удобства использования */
