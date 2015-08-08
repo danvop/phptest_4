@@ -83,4 +83,16 @@ class DVD{
 		}
 	}
 }
+class BonusDVD extends DVD{
+  function __construct($id=0){
+    parent::__construct();
+    $this->_tracks[] = -1;
+	}
+}
+class DVDFactory{
+  public static function create($type){
+    $class = ucfirst($type) . 'DVD';
+    return new $class;
+  }
+}
 ?>
