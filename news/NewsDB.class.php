@@ -43,7 +43,7 @@ class NewsDB implements INewsDB{
 	}	
 	protected function db2Arr($data){
 		$arr = array();
-		while($row = $data->fetchAll(SQLITE3_ASSOC))
+		while($row = $data->fetchArray(SQLITE3_ASSOC))
 			$arr[] = $row;
 		return $arr;	
 	}
